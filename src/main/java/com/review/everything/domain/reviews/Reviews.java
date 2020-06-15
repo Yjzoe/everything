@@ -21,26 +21,26 @@ public class Reviews extends BaseTimeEntity {
     private String title;
     private String writer;
     private String content;
-    private String img;
-    private String hashtag;
     private int gpa;
+    private String img;
+    private String oneSentence;
 
     @Builder
-    public Reviews(String category,String title,String writer,String content,String img,String hashtag,int gpa) {
+    public Reviews(String category,String title,String writer,String content,String img,String oneSentence,int gpa) {
         this.category = category;
         this.title = title;
         this.category = content;
         this.writer = writer;
-        this.hashtag = hashtag;
+        this.oneSentence = oneSentence;
         this.img = img;
         this.gpa = gpa;
     }
 
-    public void update(String category,String title,String content,String img,String hashtag,int gpa) {
+    public void update(String category,String title,String content,String img,String oneSentence,int gpa) {
         this.category = category;
         this.title = title;
         this.category = content;
-        this.hashtag = hashtag;
+        this.oneSentence = oneSentence;
         this.img = img;
         this.gpa = gpa;
     }
