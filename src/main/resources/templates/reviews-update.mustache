@@ -5,23 +5,31 @@
 <div class="col-md-12">
     <div class="col-md=4">
         <form>
+            <input type="hidden" id="id" value="{{review.id}}">
             <div class="form-group">
-                <label for="id">글번호</label>
-                <input type="text" class="form-control" id="id" value={{post.id}} readonly>
+                <label for="category">카테고리</label>
+                <select name="category" id="category">
+                    <option value="movie">영화</option>
+                    <option value="book">책</option>
+                    <option value="tvshow">TV프로그램</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value={{post.title}}>
-            </div>
-            <div class="form-group">
-                <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" value={{post.author}} readonly>
+                <input type="text" class="form-control" id="title" value="{{review.title}}">
             </div>
             <div class="form-group">
                 <label for="content">내용</label>
-                <textarea type="text" class="form-control" id="content">{{post.content}}</textarea>
+                <textarea class="form-control" id="content">{{review.content}}</textarea>
             </div>
-
+            <div class="form-group">
+                <label for="gpa">평점</label>
+                <input type="text" class="form-control" id="gpa" value="{{review.gpa}}">
+            </div>
+            <div class="form-group">
+                <label for="oneSentence">기억에 남는 한 문장</label>
+                <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
+            </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>

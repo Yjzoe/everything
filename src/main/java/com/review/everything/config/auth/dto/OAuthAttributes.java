@@ -10,15 +10,15 @@ import java.util.Map;
 @Getter
 public class OAuthAttributes {
     private Map<String, Object> attributes;
-    private String nameAttributekey;
+    private String nameAttributeKey;
     private String name;
     private String email;
     private String picture;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String name, String nameAttributekey, String email, String picture) {
+    public OAuthAttributes(Map<String, Object> attributes, String name, String nameAttributeKey, String email, String picture) {
         this.attributes = attributes;
-        this.nameAttributekey = nameAttributekey;
+        this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
         this.picture = picture;
@@ -38,7 +38,7 @@ public class OAuthAttributes {
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
                 .attributes(attributes)
-                .nameAttributekey(userNameAttributeName)
+                .nameAttributeKey(userNameAttributeName)
                 .build();
     }
 
@@ -46,11 +46,11 @@ public class OAuthAttributes {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
         return OAuthAttributes.builder()
-                .name((String) attributes.get("name"))
-                .email((String) attributes.get("email"))
-                .picture((String) attributes.get("picture"))
-                .attributes(attributes)
-                .nameAttributekey(userNameAttributeName)
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("picture"))
+                .attributes(response)
+                .nameAttributeKey(userNameAttributeName)
                 .build();
     }
 

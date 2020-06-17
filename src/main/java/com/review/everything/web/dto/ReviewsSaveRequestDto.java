@@ -10,15 +10,17 @@ import lombok.NoArgsConstructor;
 public class ReviewsSaveRequestDto {
     private String category;
     private String title;
+    private String writer;
     private String content;
     private int gpa;
     private String img;
     private String oneSentence;
 
     @Builder
-    public ReviewsSaveRequestDto(String category, String title, String content, String img, String oneSentence, int gpa) {
+    public ReviewsSaveRequestDto(String category, String title, String writer, String content, String img, String oneSentence, int gpa) {
         this.category = category;
         this.title = title;
+        this.writer = writer;
         this.content = content;
         this.gpa = gpa;
         this.img = img;
@@ -29,6 +31,7 @@ public class ReviewsSaveRequestDto {
         return Reviews.builder()
                 .category(category)
                 .title(title)
+                .writer(writer)
                 .content(content)
                 .gpa(gpa)
                 .img(img)

@@ -29,9 +29,17 @@ public class IndexController {
     }
 
     @GetMapping("/reviews/save")
-    public String reviewsSave() {
+    public String reviewsSave(Model model, @LoginUser SessionUser user) {
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
         return "reviews-save";
     }
+//
+//    @GetMapping("/reviews/save")
+//    public String reviewsSave() {
+//        return "reviews-save";
+//    }
 
     @GetMapping("/reviews/update/{id}")
     public String reviewsUpdate(@PathVariable Long id, Model model) {

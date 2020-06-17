@@ -3,8 +3,10 @@ package com.review.everything.config.auth.dto;
 import com.review.everything.domain.user.User;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public class SessionUser {
+public class SessionUser implements Serializable {
     private String name;
     private String email;
     private String picture;

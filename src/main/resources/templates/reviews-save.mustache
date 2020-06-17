@@ -5,10 +5,10 @@
 <div class="col-md-12">
     <div class="col-md=4">
         <form>
+            <input type="hidden" id="writer" name="writer" value="{{userName}}"/>
             <div class="form-group">
                 <label for="category">카테고리</label>
                 <select name="category" id="category">
-                    <option value="">카테고리</option>
                     <option value="movie">영화</option>
                     <option value="book">책</option>
                     <option value="tvshow">TV프로그램</option>
@@ -19,12 +19,16 @@
                 <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
             </div>
             <div class="form-group">
-                <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">
-            </div>
-            <div class="form-group">
                 <label for="content">내용</label>
                 <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="gpa">평점</label>
+                <input type="text" class="form-control" id="gpa" placeholder="작성자를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="oneSentence">기억에 남는 한 문장</label>
+                <input type="text" class="form-control" id="oneSentence" placeholder="작성자를 입력하세요">
             </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
