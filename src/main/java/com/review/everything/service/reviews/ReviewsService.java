@@ -44,6 +44,14 @@ public class ReviewsService {
                 .collect(Collectors.toList());
     }
 
+//    작성자별 출력
+    @Transactional
+    public List<ReviewsListResponseDto> findByWriter(String writer) {
+        return reviewsRepository.findByWriterOrderByModifiedDateDesc(writer).stream()
+                .map(ReviewsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void delete(Long id) {
         Reviews reviews = reviewsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. 글번호 =" + id));

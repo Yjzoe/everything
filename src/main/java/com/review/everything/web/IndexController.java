@@ -21,8 +21,11 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
+        //수정 필요->인덱스 화면 생성
         model.addAttribute("reviews", reviewsService.findAllDesc());
+        //
         if (user != null) {
+            model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
             model.addAttribute("userName", user.getName());
         }
         return "index";
@@ -35,17 +38,16 @@ public class IndexController {
         }
         return "reviews-save";
     }
-//
-//    @GetMapping("/reviews/save")
-//    public String reviewsSave() {
-//        return "reviews-save";
-//    }
 
     @GetMapping("/reviews/update/{id}")
-    public String reviewsUpdate(@PathVariable Long id, Model model) {
+    public String reviewsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         ReviewsResponseDto dto = reviewsService.findById(id);
-        model.addAttribute("review", dto);
-        return "reviews-update";
+        if (user.getName().equals(dto.getWriter())) {
+            model.addAttribute("review", dto);
+            return "reviews-update";
+        }
+        model.addAttribute("msg","접근 권한이 없습니다.");
+        return "index";
     }
 
 }

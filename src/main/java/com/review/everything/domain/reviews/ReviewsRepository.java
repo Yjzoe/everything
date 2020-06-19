@@ -9,4 +9,6 @@ public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
 
     @Query("SELECT r FROM Reviews r ORDER BY r.id DESC")
     List<Reviews> findAllDesc();
+
+    List<Reviews> findByWriterOrderByModifiedDateDesc(String writer);
 }

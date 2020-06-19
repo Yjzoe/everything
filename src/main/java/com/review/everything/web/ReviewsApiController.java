@@ -33,4 +33,13 @@ public class ReviewsApiController {
         service.delete(id);
         return id;
     }
+//      삭제권한
+//    @DeleteMapping("/api/v1/reviews/{id}")
+//    public Long delete(@PathVariable Long id, @LoginUser SessionUser user) {
+//        if (user.getName().equals(service.findById(id).getWriter())) {
+//            service.delete(id);
+//            return id;
+//        }
+//        return 0L;
+//    }
 }
