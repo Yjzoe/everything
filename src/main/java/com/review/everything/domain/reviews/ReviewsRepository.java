@@ -11,4 +11,6 @@ public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
     List<Reviews> findAllDesc();
 
     List<Reviews> findByWriterOrderByModifiedDateDesc(String writer);
+
+    List<Reviews> findByWriterAndCategoryOrderByModifiedDateDesc(String writer, String category);
 }

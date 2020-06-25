@@ -53,6 +53,13 @@ public class ReviewsService {
     }
 
     @Transactional
+    public List<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category) {
+        return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category).stream()
+                .map(ReviewsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
     public void delete(Long id) {
         Reviews reviews = reviewsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. 글번호 =" + id));
         reviewsRepository.delete(reviews);

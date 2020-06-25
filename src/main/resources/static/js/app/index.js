@@ -12,6 +12,17 @@ var main = {
         $('#btn-delete').on('click',function () {
             _this.delete();
         })
+
+        var category = $('#searchCategory').on('change', function(){
+            var category = $('#searchCategory').val()
+            $.ajax({
+                type : 'GET',
+                url : '/',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: category
+            })
+        })
     },
     save: function () {
         var data = {

@@ -21,11 +21,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
-        //수정 필요->인덱스 화면 생성
-        model.addAttribute("reviews", reviewsService.findAllDesc());
-        //
         if (user != null) {
-            model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
+//            model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
+            model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(),"movie"));
             model.addAttribute("userName", user.getName());
         }
         return "index";
