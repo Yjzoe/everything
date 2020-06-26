@@ -7,6 +7,7 @@ import com.review.everything.web.dto.ReviewsResponseDto;
 import com.review.everything.web.dto.ReviewsSaveRequestDto;
 import com.review.everything.web.dto.ReviewsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,14 +38,14 @@ public class ReviewsService {
         return new ReviewsResponseDto(entity);
     }
 
-    @Transactional
-    public List<ReviewsListResponseDto> findAllDesc() {
-        return reviewsRepository.findAllDesc().stream()
-                .map(ReviewsListResponseDto::new)
-                .collect(Collectors.toList());
-    }
+//    @Transactional
+//    public List<ReviewsListResponseDto> findAllDesc(Integer page, Integer size) {
+//        return reviewsRepository.findAllDesc().stream()
+//                .map(ReviewsListResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
 
-//    작성자별 출력
+    //    작성자별 출력
     @Transactional
     public List<ReviewsListResponseDto> findByWriter(String writer) {
         return reviewsRepository.findByWriterOrderByModifiedDateDesc(writer).stream()
@@ -53,8 +54,9 @@ public class ReviewsService {
     }
 
     @Transactional
-    public List<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category) {
-        return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category).stream()
+    public List<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category
+    ) {
+                return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category).stream()
                 .map(ReviewsListResponseDto::new)
                 .collect(Collectors.toList());
     }

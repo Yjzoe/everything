@@ -26,12 +26,13 @@
     {{#userName}}
     <!-- 카테고리 선택 영역 -->
     <div class="form-group">
-        <label for="searchCategory">카테고리</label>
-        <select name="searchCategory" id="searchCategory">
-            <option value="-">-</option>
-            <option value="movie">영화</option>
-            <option value="book">책</option>
-            <option value="tvshow">TV프로그램</option>
+        <label for="selectCategory">category</label>
+        <select name="selectCategory" id="selectCategory" onchange="window.open(value,'_self')">
+            <option value="" selected disabled hidden>--Choose here--</option>
+            <option value="/?category=all">All</option>
+            <option value="/?category=movie">영화</option>
+            <option value="/?category=book">책</option>
+            <option value="/?category=tvshow">TV프로그램</option>
         </select>
     </div>
     <!--리뷰 목록 출력 영역-->

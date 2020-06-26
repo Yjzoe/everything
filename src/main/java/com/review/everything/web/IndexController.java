@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,11 +21,15 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {
+    public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category,@RequestParam Integer page, Integer size) {
         if (user != null) {
-//            model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
-            model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(),"movie"));
+            if (category.equals("all")) {
+                model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
+            } else {
+                model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category));
+            }
             model.addAttribute("userName", user.getName());
+            model.addAttribute("category", category);
         }
         return "index";
     }
