@@ -5,6 +5,7 @@ import com.review.everything.config.auth.dto.SessionUser;
 import com.review.everything.service.reviews.ReviewsService;
 import com.review.everything.web.dto.ReviewsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,12 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category,@RequestParam Integer page, Integer size) {
+    public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category, Pageable pageable) {
         if (user != null) {
             if (category.equals("all")) {
-                model.addAttribute("reviews", reviewsService.findByWriter(user.getName()));
+                model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
             } else {
-                model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category));
+                model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category, pageable));
             }
             model.addAttribute("userName", user.getName());
             model.addAttribute("category", category);

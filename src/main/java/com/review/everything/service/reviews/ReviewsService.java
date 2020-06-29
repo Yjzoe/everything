@@ -7,12 +7,10 @@ import com.review.everything.web.dto.ReviewsResponseDto;
 import com.review.everything.web.dto.ReviewsSaveRequestDto;
 import com.review.everything.web.dto.ReviewsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -38,27 +36,15 @@ public class ReviewsService {
         return new ReviewsResponseDto(entity);
     }
 
-//    @Transactional
-//    public List<ReviewsListResponseDto> findAllDesc(Integer page, Integer size) {
-//        return reviewsRepository.findAllDesc().stream()
-//                .map(ReviewsListResponseDto::new)
-//                .collect(Collectors.toList());
-//    }
-
     //    작성자별 출력
     @Transactional
-    public List<ReviewsListResponseDto> findByWriter(String writer) {
-        return reviewsRepository.findByWriterOrderByModifiedDateDesc(writer).stream()
-                .map(ReviewsListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<ReviewsListResponseDto> findByWriter(String writer,Pageable pageable) {
+        return reviewsRepository.findByWriterOrderByModifiedDateDesc(writer, pageable).map(ReviewsListResponseDto::new);
     }
 
     @Transactional
-    public List<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category
-    ) {
-                return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category).stream()
-                .map(ReviewsListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category, Pageable pageable) {
+        return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category, pageable).map(ReviewsListResponseDto::new);
     }
 
     @Transactional
