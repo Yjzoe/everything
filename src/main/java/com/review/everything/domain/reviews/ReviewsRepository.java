@@ -9,8 +9,8 @@ public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
     @Query("SELECT r FROM Reviews r ORDER BY r.id DESC")
     Page<Reviews> findAllDesc(Pageable pageable);
 
-    Page<Reviews> findByWriterOrderByModifiedDateDesc(String writer, Pageable pageable);
+    Page<Reviews> findByWriter(String writer, Pageable pageable);
 
-    Page<Reviews> findByWriterAndCategoryOrderByModifiedDateDesc(String writer, String category, Pageable pageable);
+    Page<Reviews> findByWriterAndCategory(String writer, String category, Pageable pageable);
 }
 

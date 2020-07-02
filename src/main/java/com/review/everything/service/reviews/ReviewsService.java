@@ -39,12 +39,12 @@ public class ReviewsService {
     //    작성자별 출력
     @Transactional
     public Page<ReviewsListResponseDto> findByWriter(String writer,Pageable pageable) {
-        return reviewsRepository.findByWriterOrderByModifiedDateDesc(writer, pageable).map(ReviewsListResponseDto::new);
+        return reviewsRepository.findByWriter(writer, pageable).map(ReviewsListResponseDto::new);
     }
 
     @Transactional
     public Page<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category, Pageable pageable) {
-        return reviewsRepository.findByWriterAndCategoryOrderByModifiedDateDesc(writer, category, pageable).map(ReviewsListResponseDto::new);
+        return reviewsRepository.findByWriterAndCategory(writer, category, pageable).map(ReviewsListResponseDto::new);
     }
 
     @Transactional

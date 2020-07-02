@@ -6,6 +6,8 @@ import com.review.everything.service.reviews.ReviewsService;
 import com.review.everything.web.dto.ReviewsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category, Pageable pageable) {
+    public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category,
+                        @PageableDefault(size = 3, page = 0 , sort = {"modifiedDate"}, direction = Sort.Direction.DESC ) Pageable pageable) {
         if (user != null) {
             if (category.equals("all")) {
                 model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
