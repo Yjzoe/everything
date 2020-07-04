@@ -25,15 +25,52 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category,
+                        @RequestParam(defaultValue = "") String searchCategory, @RequestParam(defaultValue = "") String keyword,
                         @PageableDefault(size = 3, page = 0 , sort = {"modifiedDate"}, direction = Sort.Direction.DESC ) Pageable pageable) {
         if (user != null) {
-            if (category.equals("all")) {
-                model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
+            if (!category.equals("all")) {
+                if (!searchCategory.equals("") && !keyword.equals("")) {
+                    if (searchCategory.equals("title")) {
+                        model.addAttribute("reviews", reviewsService.findByWriterAndCategoryAndTitleContaining(user.getName(), category, keyword, pageable));
+                    } else {
+                        model.addAttribute("reviews", reviewsService.findByWriterAndCategoryAndContentContaining(user.getName(), category, keyword, pageable));
+                    }
+                } else {
+                    model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category, pageable));
+                }
             } else {
-                model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category, pageable));
+                if (!searchCategory.equals("") && !keyword.equals("")) {
+                    if (searchCategory.equals("title")) {
+                        model.addAttribute("reviews", reviewsService.findByWriterAndTitleContaining(user.getName(), keyword, pageable));
+                    } else {
+                        model.addAttribute("reviews", reviewsService.findByWriterAndContentContaining(user.getName(), keyword, pageable));
+                    }
+                } else {
+                    model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
+                }
             }
+            model.addAttribute("searchCategory", searchCategory);
+            model.addAttribute("keyword", keyword);
             model.addAttribute("userName", user.getName());
             model.addAttribute("category", category);
+            switch (category) {
+                case "all": {
+                    model.addAttribute("categoryKor", "all");
+                    break;
+                }
+                case "movie": {
+                    model.addAttribute("categoryKor", "영화");
+                    break;
+                }
+                case "tvshow": {
+                    model.addAttribute("categoryKor", "tv프로그램");
+                    break;
+                }
+                case "book": {
+                    model.addAttribute("categoryKor", "책");
+                    break;
+                }
+            }
         }
         return "index";
     }

@@ -43,8 +43,26 @@ public class ReviewsService {
     }
 
     @Transactional
+    public Page<ReviewsListResponseDto> findByWriterAndTitleContaining(String writer, String keyword, Pageable pageable) {
+        return reviewsRepository.findByWriterAndTitleContaining(writer, keyword, pageable).map(ReviewsListResponseDto::new);
+    }
+
+    @Transactional
+    public Page<ReviewsListResponseDto> findByWriterAndContentContaining(String writer, String keyword, Pageable pageable) {
+        return reviewsRepository.findByWriterAndContentContaining(writer, keyword,pageable).map(ReviewsListResponseDto::new);
+    }
+
+    @Transactional
     public Page<ReviewsListResponseDto> findByWriterAndCategory(String writer, String category, Pageable pageable) {
         return reviewsRepository.findByWriterAndCategory(writer, category, pageable).map(ReviewsListResponseDto::new);
+    }
+    @Transactional
+    public Page<ReviewsListResponseDto> findByWriterAndCategoryAndTitleContaining(String writer, String category, String keyword, Pageable pageable) {
+        return reviewsRepository.findByWriterAndCategoryAndTitleContaining(writer, category, keyword, pageable).map(ReviewsListResponseDto::new);
+    }
+    @Transactional
+    public Page<ReviewsListResponseDto> findByWriterAndCategoryAndContentContaining(String writer, String category, String keyword, Pageable pageable) {
+        return reviewsRepository.findByWriterAndCategoryAndContentContaining(writer, category, keyword, pageable).map(ReviewsListResponseDto::new);
     }
 
     @Transactional

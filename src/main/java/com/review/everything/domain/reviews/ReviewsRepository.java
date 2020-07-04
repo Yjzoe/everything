@@ -10,7 +10,11 @@ public interface ReviewsRepository extends JpaRepository<Reviews, Long> {
     Page<Reviews> findAllDesc(Pageable pageable);
 
     Page<Reviews> findByWriter(String writer, Pageable pageable);
+    Page<Reviews> findByWriterAndTitleContaining(String writer, String keyword, Pageable pageable);
+    Page<Reviews> findByWriterAndContentContaining(String writer, String keyword, Pageable pageable);
 
     Page<Reviews> findByWriterAndCategory(String writer, String category, Pageable pageable);
+    Page<Reviews> findByWriterAndCategoryAndTitleContaining(String writer, String category, String keyword, Pageable pageable);
+    Page<Reviews> findByWriterAndCategoryAndContentContaining(String writer, String category, String keyword, Pageable pageable);
 }
 
