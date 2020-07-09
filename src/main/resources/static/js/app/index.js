@@ -19,11 +19,10 @@ var main = {
             title: $('#title').val(),
             writer: $('#writer').val(),
             content: $('#content').val(),
-            gpa : $('#gpa').val(),
+            gpa : $('input[name=gpa]:checked').val(),
             oneSentence : $('#oneSentence').val(),
             img : null
         }
-
         $.ajax({
             type: 'POST',
             url: '/api/v1/reviews',
@@ -42,7 +41,7 @@ var main = {
             category : $('#category').val(),
             title: $('#title').val(),
             content: $('#content').val(),
-            gpa : $('#gpa').val(),
+            gpa : $('input[name=gpa]:checked').val(),
             oneSentence : $('#oneSentence').val(),
             img : null
         }

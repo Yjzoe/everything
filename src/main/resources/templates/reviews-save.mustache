@@ -23,9 +23,22 @@
                 <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
             </div>
             <div class="form-group">
-                <label for="gpa">평점</label>
-                <input type="text" class="form-control" id="gpa" placeholder="작성자를 입력하세요">
+                <label for="gpa">평점</label><br/>
+                <div class="gpa">
+                    <input type="radio" id="star5" name="gpa" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="gpa" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="gpa" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="gpa" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="gpa" value="1" checked="checked"/>
+                    <label for="star1" title="text">1 star</label>
+                </div>
             </div>
+            <br/>
+            <br/>
             <div class="form-group">
                 <label for="oneSentence">기억에 남는 한 문장</label>
                 <input type="text" class="form-control" id="oneSentence" placeholder="작성자를 입력하세요">

@@ -1,5 +1,13 @@
 {{>layout/header}}
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function () {
+        var category = "{{review.category}}"
+        $('select.category option[value=' + category + ']').attr('selected', 'selected');
+        var gpa = "{{review.gpa}}"
+        $('input:radio[name=gpa]:input[value='+gpa+']').attr("checked",true)
+    })
+</script>
 <h1 xmlns="http://www.w3.org/1999/html">게시글 수정</h1>
 
 <div class="col-md-12">
@@ -8,7 +16,7 @@
             <input type="hidden" id="id" value="{{review.id}}">
             <div class="form-group">
                 <label for="category">카테고리</label>
-                <select name="category" id="category">
+                <select class="category" name="category" id="category">
                     <option value="movie">영화</option>
                     <option value="book">책</option>
                     <option value="tvshow">TV프로그램</option>
@@ -23,9 +31,22 @@
                 <textarea class="form-control" id="content">{{review.content}}</textarea>
             </div>
             <div class="form-group">
-                <label for="gpa">평점</label>
-                <input type="text" class="form-control" id="gpa" value="{{review.gpa}}">
+                <label for="gpa">평점</label><br/>
+                <div class="gpa">
+                    <input type="radio" class="gpa" id="star5" name="gpa" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" class="gpa" id="star4" name="gpa" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" class="gpa" id="star3" name="gpa" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" class="gpa" id="star2" name="gpa" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" class="gpa" id="star1" name="gpa" value="1"/>
+                    <label for="star1" title="text">1 star</label>
+                </div>
             </div>
+            <br/>
+            <br/>
             <div class="form-group">
                 <label for="oneSentence">기억에 남는 한 문장</label>
                 <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
