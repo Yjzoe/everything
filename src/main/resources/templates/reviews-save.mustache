@@ -1,10 +1,13 @@
 {{>layout/header}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+</script>
 
 <h1>리뷰 등록</h1>
 
 <div class="col-md-12">
     <div class="col-md=4">
-        <form>
+        <form enctype="multipart/form-data">
             <input type="hidden" id="writer" name="writer" value="{{userName}}"/>
             <div class="form-group">
                 <label for="category">카테고리</label>
@@ -43,6 +46,8 @@
                 <label for="oneSentence">기억에 남는 한 문장</label>
                 <input type="text" class="form-control" id="oneSentence" placeholder="작성자를 입력하세요">
             </div>
+            <input type="file" id="img"/>
+            <button type="button" id="btn-img">파일 등록</button>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-save">등록</button>

@@ -25,8 +25,6 @@ public class Reviews extends BaseTimeEntity {
     private String img;
     private String oneSentence;
 
-
-
     @Builder
     public Reviews(String category,String title,String writer,String content,String img,String oneSentence,int gpa) {
         this.category = category;

@@ -38,6 +38,6 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "ok";
+        return uuidFilename;
     }
 }

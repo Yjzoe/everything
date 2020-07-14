@@ -5,11 +5,16 @@ import com.review.everything.web.dto.ReviewsResponseDto;
 import com.review.everything.web.dto.ReviewsSaveRequestDto;
 import com.review.everything.web.dto.ReviewsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
 public class ReviewsApiController {
+
+
+    @Value("${storage.location}")
+    private String fileRealPath;
 
     private final ReviewsService service;
 
