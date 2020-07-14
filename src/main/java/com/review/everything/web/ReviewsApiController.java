@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+
 @RequiredArgsConstructor
 @RestController
 public class ReviewsApiController {
@@ -35,16 +37,12 @@ public class ReviewsApiController {
 
     @DeleteMapping("/api/v1/reviews/{id}")
     public Long delete(@PathVariable Long id) {
+        String fileName = findById(id).getImg();
+        File file = new File(fileRealPath + fileName);
+        if(file.exists() == true){
+            file.delete();
+        }
         service.delete(id);
         return id;
     }
-//      삭제권한
-//    @DeleteMapping("/api/v1/reviews/{id}")
-//    public Long delete(@PathVariable Long id, @LoginUser SessionUser user) {
-//        if (user.getName().equals(service.findById(id).getWriter())) {
-//            service.delete(id);
-//            return id;
-//        }
-//        return 0L;
-//    }
 }
