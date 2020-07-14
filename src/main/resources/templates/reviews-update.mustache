@@ -6,6 +6,7 @@
         $('select.category option[value=' + category + ']').attr('selected', 'selected');
         var gpa = "{{review.gpa}}"
         $('input:radio[name=gpa]:input[value='+gpa+']').attr("checked",true)
+        var img = "{{review.img}}"
     })
 </script>
 <h1 xmlns="http://www.w3.org/1999/html">게시글 수정</h1>
@@ -51,6 +52,9 @@
                 <label for="oneSentence">기억에 남는 한 문장</label>
                 <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
             </div>
+            <img src="/uploads/{{review.img}}" width="200px"/><br/>
+            <br/>
+            <input type="file" id="img"/>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
