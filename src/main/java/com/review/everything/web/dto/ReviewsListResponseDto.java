@@ -10,6 +10,7 @@ public class ReviewsListResponseDto {
     private Long id;
     private String title;
     private LocalDateTime modifiedDate;
+    private String img;
     private String content;
     private String oneSentence;
     private String category;
@@ -18,6 +19,7 @@ public class ReviewsListResponseDto {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.modifiedDate = entity.getModifiedDate();
+        this.img = entity.getImg();
         this.content = entity.getContent();
         this.oneSentence = entity.getOneSentence();
         this.category = entity.getCategory();
