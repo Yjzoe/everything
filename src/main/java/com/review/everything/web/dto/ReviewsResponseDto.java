@@ -10,7 +10,7 @@ public class ReviewsResponseDto {
     private String title;
     private String writer;
     private String content;
-    private int gpa;
+    private int rate;
     private String img;
     private String oneSentence;
 
@@ -20,7 +20,7 @@ public class ReviewsResponseDto {
         this.title = entity.getTitle();
         this.writer = entity.getWriter();
         this.content = entity.getContent();
-        this.gpa = entity.getGpa();
+        this.rate = entity.getRate();
         this.img = entity.getImg();
         this.oneSentence = entity.getOneSentence();
     }

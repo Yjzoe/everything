@@ -4,9 +4,13 @@
     $(function () {
         var category = "{{review.category}}"
         $('select.category option[value=' + category + ']').attr('selected', 'selected');
-        var gpa = "{{review.gpa}}"
-        $('input:radio[name=gpa]:input[value='+gpa+']').attr("checked",true)
-        var img = "{{review.img}}"
+        var rate = "{{review.rate}}"
+        $('input:radio[name=rate]:input[value='+rate+']').attr("checked",true)
+
+        $('#btn-img-del').on('click', function () {
+            $('#uploadedImg').remove()
+            $('#oldFile').val("")
+        })
     })
 </script>
 <h1 xmlns="http://www.w3.org/1999/html">게시글 수정</h1>
@@ -32,17 +36,17 @@
                 <textarea class="form-control" id="content">{{review.content}}</textarea>
             </div>
             <div class="form-group">
-                <label for="gpa">평점</label><br/>
-                <div class="gpa">
-                    <input type="radio" class="gpa" id="star5" name="gpa" value="5" />
+                <label for="rate">평점</label><br/>
+                <div class="rate">
+                    <input type="radio" class="rate" id="star5" name="rate" value="5" />
                     <label for="star5" title="text">5 stars</label>
-                    <input type="radio" class="gpa" id="star4" name="gpa" value="4" />
+                    <input type="radio" class="rate" id="star4" name="rate" value="4" />
                     <label for="star4" title="text">4 stars</label>
-                    <input type="radio" class="gpa" id="star3" name="gpa" value="3" />
+                    <input type="radio" class="rate" id="star3" name="rate" value="3" />
                     <label for="star3" title="text">3 stars</label>
-                    <input type="radio" class="gpa" id="star2" name="gpa" value="2" />
+                    <input type="radio" class="rate" id="star2" name="rate" value="2" />
                     <label for="star2" title="text">2 stars</label>
-                    <input type="radio" class="gpa" id="star1" name="gpa" value="1"/>
+                    <input type="radio" class="rate" id="star1" name="rate" value="1"/>
                     <label for="star1" title="text">1 star</label>
                 </div>
             </div>
@@ -52,9 +56,17 @@
                 <label for="oneSentence">기억에 남는 한 문장</label>
                 <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
             </div>
-            <img src="/uploads/{{review.img}}" width="200px"/><br/>
+            {{#review.img}}
+            <div id="uploadedImg">
+            <img src="/uploads/{{review.img}}" width="200px"/> <button id="btn-img-del">-</button><br/>
+            </div>
             <br/>
-            <input type="file" id="img"/>
+            <input type="hidden" id="oldFile" value="{{review.img}}">
+            <input type="file" id="newFile"/>
+            {{/review.img}}
+            {{^review.img}}
+                <input type="file" id="newFile"/>
+            {{/review.img}}
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>

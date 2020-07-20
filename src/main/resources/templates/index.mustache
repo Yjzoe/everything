@@ -56,7 +56,9 @@
             <tr>
                 <td colspan="2">
                 <div align="right"><span text-align="right"><font size="2">Date {{modifiedDate}}</font></span></div>
-                <img src="/uploads/{{img}}" width="100%"/><br/>
+                {{#img}}
+                    <img src="/uploads/{{img}}" width="100%"/><br/>
+                {{/img}}
                     {{content}}</td>
             </tr>
             <tr>

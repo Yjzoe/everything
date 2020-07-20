@@ -21,28 +21,28 @@ public class Reviews extends BaseTimeEntity {
     private String title;
     private String writer;
     private String content;
-    private int gpa;
+    private int rate;
     private String img;
     private String oneSentence;
 
     @Builder
-    public Reviews(String category,String title,String writer,String content,String img,String oneSentence,int gpa) {
+    public Reviews(String category,String title,String writer,String content,String img,String oneSentence,int rate) {
         this.category = category;
         this.title = title;
         this.content = content;
         this.writer = writer;
         this.oneSentence = oneSentence;
         this.img = img;
-        this.gpa = gpa;
+        this.rate = rate;
     }
 
-    public void update(String category,String title,String content,String img,String oneSentence,int gpa) {
+    public void update(String category,String title,String content,String img,String oneSentence,int rate) {
         this.category = category;
         this.title = title;
         this.content = content;
         this.oneSentence = oneSentence;
         this.img = img;
-        this.gpa = gpa;
+        this.rate = rate;
     }
 
 }

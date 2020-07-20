@@ -12,15 +12,10 @@ var main = {
         $('#btn-delete').on('click',function () {
             _this.delete();
         })
-
-        $('#btn-img').on('click',function () {
-            _this.imgUpload();
-        })
     },
     save: function () {
-
         var img = "";
-        if ($('#img').val().length >= 1) {
+        if ($('#newFile').val().length >= 1) {
             var x = this.imgUpload()
             img = x;
         }
@@ -30,7 +25,7 @@ var main = {
             title: $('#title').val(),
             writer: $('#writer').val(),
             content: $('#content').val(),
-            gpa : $('input[name=gpa]:checked').val(),
+            rate : $('input[name=rate]:checked').val(),
             oneSentence : $('#oneSentence').val(),
             img: img
         };
@@ -48,13 +43,20 @@ var main = {
         });
     },
     update: function () {
+        var oldFile = $('#oldFile').val()
+        var img = oldFile
+        if ($('#newFile').val().length >= 1) {
+            var x = this.imgUpload()
+            img = x;
+        }
+
         var data = {
             category : $('#category').val(),
             title: $('#title').val(),
             content: $('#content').val(),
-            gpa : $('input[name=gpa]:checked').val(),
+            rate : $('input[name=rate]:checked').val(),
             oneSentence : $('#oneSentence').val(),
-            img : null
+            img : img
         }
 
         var id = $('#id').val();
@@ -86,15 +88,14 @@ var main = {
             alert(JSON.stringify(error))
         });
     },
-
     imgUpload: function () {
         var res = "";
         var form = new FormData();
         form.append("writer", $('#writer').val());
-        form.append("imgFile", $('#img')[0].files[0], $('#img').val().slice(12));
+        form.append("imgFile", $('#newFile')[0].files[0], $('#newFile').val().slice(12));
 
         var settings = {
-            "url": "http://localhost:8080/image/upload",
+            "url": "/image/upload",
             "method": "PUT",
             "timeout": 0,
             "processData": false,
@@ -108,8 +109,6 @@ var main = {
         });
         return res;
     }
-
-
 }
 
 main.init()

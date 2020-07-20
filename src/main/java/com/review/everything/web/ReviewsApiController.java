@@ -27,6 +27,14 @@ public class ReviewsApiController {
 
     @PutMapping("/api/v1/reviews/{id}")
     public Long update(@PathVariable Long id, @RequestBody ReviewsUpdateRequestDto requestDto) {
+        String oldFileName = service.findById(id).getImg();
+        if (!oldFileName.equals("") || !oldFileName.equals(null)) {
+            if (!oldFileName.equals(requestDto.getImg())) {
+                fileDelete(fileRealPath + oldFileName);
+            }
+        } else if (oldFileName.equals(requestDto.getImg())) {
+            fileDelete(fileRealPath + oldFileName);
+        }
         return service.update(id, requestDto);
     }
 
@@ -38,11 +46,15 @@ public class ReviewsApiController {
     @DeleteMapping("/api/v1/reviews/{id}")
     public Long delete(@PathVariable Long id) {
         String fileName = findById(id).getImg();
-        File file = new File(fileRealPath + fileName);
+        fileDelete(fileRealPath + fileName);
+        service.delete(id);
+        return id;
+    }
+
+    public void fileDelete(String filePath) {
+        File file = new File(filePath);
         if(file.exists() == true){
             file.delete();
         }
-        service.delete(id);
-        return id;
     }
 }

@@ -25,7 +25,7 @@ public class ReviewsService {
     @Transactional
     public Long update(Long id, ReviewsUpdateRequestDto requestDto) {
         Reviews reviews = reviewsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. 글번호 =" + id));
-        reviews.update(requestDto.getCategory(), requestDto.getTitle(), requestDto.getContent(), requestDto.getImg(), requestDto.getOneSentence(), requestDto.getGpa());
+        reviews.update(requestDto.getCategory(), requestDto.getTitle(), requestDto.getContent(), requestDto.getImg(), requestDto.getOneSentence(), requestDto.getRate());
         return id;
     }
 

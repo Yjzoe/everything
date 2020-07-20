@@ -5,6 +5,7 @@ import com.review.everything.config.auth.dto.SessionUser;
 import com.review.everything.service.reviews.ReviewsService;
 import com.review.everything.web.dto.ReviewsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -83,10 +84,17 @@ public class IndexController {
         return "reviews-save";
     }
 
+    @Value("${storage.location}")
+    private String fileRealPath;
+
     @GetMapping("/reviews/update/{id}")
     public String reviewsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+
         ReviewsResponseDto dto = reviewsService.findById(id);
         if (user.getName().equals(dto.getWriter())) {
+            if (!dto.getImg().equals("") || !dto.getImg().equals(null)) {
+                model.addAttribute("filePath", fileRealPath + dto.getImg());
+            }
             model.addAttribute("review", dto);
             return "reviews-update";
         }

@@ -12,17 +12,17 @@ public class ReviewsSaveRequestDto {
     private String title;
     private String writer;
     private String content;
-    private int gpa;
+    private int rate;
     private String img;
     private String oneSentence;
 
     @Builder
-    public ReviewsSaveRequestDto(String category, String title, String writer, String content, String img, String oneSentence, int gpa) {
+    public ReviewsSaveRequestDto(String category, String title, String writer, String content, String img, String oneSentence, int rate) {
         this.category = category;
         this.title = title;
         this.writer = writer;
         this.content = content;
-        this.gpa = gpa;
+        this.rate = rate;
         this.img = img;
         this.oneSentence = oneSentence;
     }
@@ -33,7 +33,7 @@ public class ReviewsSaveRequestDto {
                 .title(title)
                 .writer(writer)
                 .content(content)
-                .gpa(gpa)
+                .rate(rate)
                 .img(img)
                 .oneSentence(oneSentence)
                 .build();
