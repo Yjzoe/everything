@@ -2,31 +2,36 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 </script>
+<br/>
+<h1 align="center">Write</h1>
+<br/>
+<form enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+    <div class="col-3">
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="movie">영화</option>
+                <option value="book">책</option>
+                <option value="tvshow">TV프로그램</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="form-group">
+            <label for="title">Title</label><input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" required="required">
+        </div>
+    </div>
+    </div>
+        <input type="hidden" id="writer" name="writer" value="{{userName}}"/>
 
-<h1>리뷰 등록</h1>
-
-<div class="col-md-12">
-    <div class="col-md=4">
-        <form enctype="multipart/form-data">
-            <input type="hidden" id="writer" name="writer" value="{{userName}}"/>
             <div class="form-group">
-                <label for="category">카테고리</label>
-                <select name="category" id="category">
-                    <option value="movie">영화</option>
-                    <option value="book">책</option>
-                    <option value="tvshow">TV프로그램</option>
-                </select>
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요" required="required"></textarea>
             </div>
             <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="content">내용</label>
-                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="rate">평점</label><br/>
+                <label for="rate">Rate</label><br/>
                 <div class="rate">
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label for="star5" title="text">5 stars</label>
@@ -43,13 +48,14 @@
             <br/>
             <br/>
             <div class="form-group">
-                <label for="oneSentence">기억에 남는 한 문장</label>
+                <label for="oneSentence" required="required">One Sentence</label>
                 <input type="text" class="form-control" id="oneSentence" placeholder="작성자를 입력하세요">
             </div>
             <input type="file" id="newFile"/>
         </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-save">등록</button>
-    </div>
+        <br/>
+        <br/>
+        <a href="/" role="button" class="btn btn-secondary">Cancel</a>
+        <button type="button" class="btn btn-primary" id="btn-save">Register</button>
 </div>
 {{>layout/footer}}

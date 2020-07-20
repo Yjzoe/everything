@@ -50,6 +50,7 @@ public class IndexController {
                     model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
                 }
             }
+
             model.addAttribute("searchCategory", searchCategory);
             model.addAttribute("keyword", keyword);
             model.addAttribute("userName", user.getName());
@@ -94,6 +95,8 @@ public class IndexController {
         if (user.getName().equals(dto.getWriter())) {
             if (!dto.getImg().equals("") || !dto.getImg().equals(null)) {
                 model.addAttribute("filePath", fileRealPath + dto.getImg());
+            } else if (dto.getImg().equals("")) {
+                model.addAttribute("img", null);
             }
             model.addAttribute("review", dto);
             return "reviews-update";

@@ -13,64 +13,72 @@
         })
     })
 </script>
-<h1 xmlns="http://www.w3.org/1999/html">게시글 수정</h1>
-
-<div class="col-md-12">
-    <div class="col-md=4">
-        <form>
+<br/>
+<h1 align="center">Edit</h1>
+<br/>
+    <form>
+    <div class="container">
+    <div class="row">
+        <div class="col-3">
             <input type="hidden" id="id" value="{{review.id}}">
             <div class="form-group">
-                <label for="category">카테고리</label>
-                <select class="category" name="category" id="category">
-                    <option value="movie">영화</option>
-                    <option value="book">책</option>
-                    <option value="tvshow">TV프로그램</option>
-                </select>
+            <label for="category">Category</label>
+            <select class="category" name="category" id="category">
+                <option value="movie">영화</option>
+                <option value="book">책</option>
+                <option value="tvshow">TV프로그램</option>
+            </select>
             </div>
+        </div>
+        <div class="col-9">
             <div class="form-group">
-                <label for="title">제목</label>
+                <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" value="{{review.title}}">
             </div>
-            <div class="form-group">
-                <label for="content">내용</label>
-                <textarea class="form-control" id="content">{{review.content}}</textarea>
+        </div>
+    </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content">{{review.content}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="rate">Rate</label><br/>
+            <div class="rate">
+                <input type="radio" class="rate" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" class="rate" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" class="rate" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" class="rate" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" class="rate" id="star1" name="rate" value="1"/>
+                <label for="star1" title="text">1 star</label>
             </div>
-            <div class="form-group">
-                <label for="rate">평점</label><br/>
-                <div class="rate">
-                    <input type="radio" class="rate" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input type="radio" class="rate" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input type="radio" class="rate" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input type="radio" class="rate" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input type="radio" class="rate" id="star1" name="rate" value="1"/>
-                    <label for="star1" title="text">1 star</label>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <div class="form-group">
-                <label for="oneSentence">기억에 남는 한 문장</label>
-                <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
-            </div>
-            {{#review.img}}
-            <div id="uploadedImg">
-            <img src="/uploads/{{review.img}}" width="200px"/> <button id="btn-img-del">-</button><br/>
-            </div>
-            <br/>
-            <input type="hidden" id="oldFile" value="{{review.img}}">
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label for="oneSentence">One Sentence</label>
+            <input type="text" class="form-control" id="oneSentence" value="{{review.oneSentence}}">
+        </div>
+        {{#img}}
+        <div id="uploadedImg">
+        <img src="/uploads/{{review.img}}" width="200px"/> <button id="btn-img-del">-</button><br/>
+        </div>
+        <br/>
+        <input type="hidden" id="oldFile" value="{{review.img}}">
+        <input type="file" id="newFile"/>
+        {{/img}}
+        {{^img}}
             <input type="file" id="newFile"/>
-            {{/review.img}}
-            {{^review.img}}
-                <input type="file" id="newFile"/>
-            {{/review.img}}
+        {{/img}}
         </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
-        <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+        <br/>
+        <br/>
+        <a href="/" role="button" class="btn btn-secondary">Cancel</a>
+        <button type="button" class="btn btn-primary" id="btn-update">Edit</button>
+        <button type="button" class="btn btn-danger" id="btn-delete">Delete</button>
     </div>
 </div>
 {{>layout/footer}}

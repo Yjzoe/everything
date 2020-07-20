@@ -39,7 +39,7 @@
                     <option value="/?category=book&searchCategory={{searchCategory}}&keyword={{keyword}}">책</option>
                     <option value="/?category=tvshow&searchCategory={{searchCategory}}&keyword={{keyword}}">TV프로그램</option>
                 </select>
-            </div>
+                </div>
             </div>
         </div>
         <!--리뷰 목록 출력 영역-->
@@ -56,9 +56,6 @@
             <tr>
                 <td colspan="2">
                 <div align="right"><span text-align="right"><font size="2">Date {{modifiedDate}}</font></span></div>
-                {{#img}}
-                    <img src="/uploads/{{img}}" width="100%"/><br/>
-                {{/img}}
                     {{content}}</td>
             </tr>
             <tr>
@@ -80,13 +77,14 @@
         <input type="submit" value="검색"/>
         </form>
         </div>
+        <br/>
         <!--페이지 번호 출력-->
         <div class="row">
-        <nav aria-label="..." style="margin-left:50%">
+        <nav aria-label="..." style="margin-left:47%">
             <ul class="pagination">
             {{^reviews.isFirst}}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{reviews.previousPageable.getPageNumber}}&category={{category}}&searchCategory={{searchCategory}}&keyword={{keyword}}">&larr;Previous</a>
+                    <a class="page-link" href="?page={{reviews.previousPageable.getPageNumber}}&category={{category}}&searchCategory={{searchCategory}}&keyword={{keyword}}">&larr;</a>
                 </li>
             {{/reviews.isFirst}}
                 <li class="page-item active" aria-current="page">
@@ -94,7 +92,7 @@
                 </li>
             {{^reviews.isLast}}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{reviews.nextPageable.getPageNumber}}&category={{category}}&searchCategory={{searchCategory}}&keyword={{keyword}}">Next&rarr;</a>
+                    <a class="page-link" href="?page={{reviews.nextPageable.getPageNumber}}&category={{category}}&searchCategory={{searchCategory}}&keyword={{keyword}}">&rarr;</a>
                 </li>
             {{/reviews.isLast}}
         </ul>
