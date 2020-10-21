@@ -93,9 +93,9 @@ public class IndexController {
 
         ReviewsResponseDto dto = reviewsService.findById(id);
         if (user.getName().equals(dto.getWriter())) {
-            if (!dto.getImg().equals("") || !dto.getImg().equals(null)) {
-                model.addAttribute("filePath", fileRealPath + dto.getImg());
-            } else if (dto.getImg().equals("")) {
+            if (dto.getImg().length()!=0) {
+                model.addAttribute("img", fileRealPath + dto.getImg());
+            } else {
                 model.addAttribute("img", null);
             }
             model.addAttribute("review", dto);
