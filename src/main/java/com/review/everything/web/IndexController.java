@@ -28,26 +28,35 @@ public class IndexController {
     public String index(Model model, @LoginUser SessionUser user, @RequestParam(defaultValue = "all") String category,
                         @RequestParam(defaultValue = "") String searchCategory, @RequestParam(defaultValue = "") String keyword,
                         @PageableDefault(size = 3, page = 0 , sort = {"modifiedDate"}, direction = Sort.Direction.DESC ) Pageable pageable) {
+
+        int pageNum = pageable.getPageNumber()+1;
+
         if (user != null) {
             if (!category.equals("all")) {
                 if (!searchCategory.equals("") && !keyword.equals("")) {
                     if (searchCategory.equals("title")) {
                         model.addAttribute("reviews", reviewsService.findByWriterAndCategoryAndTitleContaining(user.getName(), category, keyword, pageable));
+                        model.addAttribute("pageNum", pageNum);
                     } else {
+                        model.addAttribute("pageNum", pageNum);
                         model.addAttribute("reviews", reviewsService.findByWriterAndCategoryAndContentContaining(user.getName(), category, keyword, pageable));
                     }
                 } else {
-                    model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category, pageable));
+                    model.addAttribute("reviews", reviewsService.findByWriterAndCategory(user.getName(), category, pageable));                        model.addAttribute("pageNum", pageNum);
+                    model.addAttribute("pageNum", pageNum);
                 }
             } else {
                 if (!searchCategory.equals("") && !keyword.equals("")) {
                     if (searchCategory.equals("title")) {
                         model.addAttribute("reviews", reviewsService.findByWriterAndTitleContaining(user.getName(), keyword, pageable));
+                        model.addAttribute("pageNum", pageNum);
                     } else {
                         model.addAttribute("reviews", reviewsService.findByWriterAndContentContaining(user.getName(), keyword, pageable));
+                        model.addAttribute("pageNum", pageNum);
                     }
                 } else {
                     model.addAttribute("reviews", reviewsService.findByWriter(user.getName(), pageable));
+                    model.addAttribute("pageNum", pageNum);
                 }
             }
 
